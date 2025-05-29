@@ -15,6 +15,7 @@ import { useColorScheme } from "~/lib/useColorScheme";
 import { PortalHost } from "@rn-primitives/portal";
 import { ThemeToggle } from "~/components/ThemeToggle";
 import { setAndroidNavigationBar } from "~/lib/android-navigation-bar";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -39,20 +40,23 @@ const usePlatformSpecificSetup = Platform.select({
 export default function RootLayout() {
   usePlatformSpecificSetup();
   const { isDarkColorScheme } = useColorScheme();
+  const queryClient = new QueryClient();
   return (
-    <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-      <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-      <Stack>
-        <Stack.Screen
-          name="index"
-          options={{
-            title: "Travel Buddies",
-            headerRight: () => <ThemeToggle />,
-          }}
-        />
-      </Stack>
-      <PortalHost />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+        <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen
+            name="index"
+            options={{
+              title: "Travel Buddies",
+              headerRight: () => <ThemeToggle />,
+            }}
+          />
+        </Stack>
+        <PortalHost />
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 
@@ -63,7 +67,6 @@ const useIsomorphicLayoutEffect =
 
 function useSetWebBackgroundClassName() {
   useIsomorphicLayoutEffect(() => {
-    // Adds the background color to the html element to prevent white background on overscroll.
     document.documentElement.classList.add("bg-background");
   }, []);
 }

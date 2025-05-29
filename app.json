@@ -17,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.padova12.travelling-buddies"
     },
     "android": {
       "adaptiveIcon": {
