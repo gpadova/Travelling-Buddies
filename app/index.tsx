@@ -1,11 +1,14 @@
 import { Redirect } from "expo-router";
-import { useUserSession } from "~/lib/query/useUserSession";
+import { Text } from "~/components/ui/text";
 
 export default function Screen() {
-  const { data: session } = useUserSession();
-  console.log({ session });
-  if (session) {
-    <Redirect href="/(authenticated)" />;
+  const isAuth = 1 === 1;
+  if (isAuth) {
+    return <Redirect href={"/(public)/sign-in"} />;
   }
-  return <Redirect href="/(public)/sign-in" />;
+  return (
+    <>
+      <Text>Banana</Text>
+    </>
+  );
 }

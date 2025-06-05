@@ -13,6 +13,13 @@
     "postinstall": "npx tailwindcss -i ./global.css -o ./node_modules/.cache/nativewind/global.css"
   },
   "dependencies": {
+    "@livestore/adapter-expo": "0.3.1-dev.0",
+    "@livestore/devtools-expo": "0.3.1-dev.0",
+    "@livestore/livestore": "0.3.1-dev.0",
+    "@livestore/peer-deps": "0.3.1-dev.0",
+    "@livestore/react": "0.3.1-dev.0",
+    "@livestore/sync-cf": "^0.3.0",
+    "@livestore/utils": "0.3.1-dev.0",
     "@react-native-async-storage/async-storage": "2.1.2",
     "@react-navigation/native": "^7.0.0",
     "@rn-primitives/avatar": "~1.2.0",
@@ -30,6 +37,7 @@
     "expo-navigation-bar": "~4.2.4",
     "expo-router": "~5.0.7",
     "expo-splash-screen": "~0.30.8",
+    "expo-sqlite": "^15.2.10",
     "expo-status-bar": "~2.2.3",
     "expo-system-ui": "~5.0.7",
     "lucide-react-native": "^0.511.0",
@@ -50,6 +58,7 @@
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@types/react": "~19.0.14",
+    "babel-plugin-transform-vite-meta-env": "^1.0.3",
     "typescript": "^5.8.3"
   },
   "private": true

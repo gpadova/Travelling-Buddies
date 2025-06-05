@@ -21,7 +21,7 @@ export default function SignUp() {
       <Button className="w-full">
         <Text>Sign Up</Text>
       </Button>
-      <Link href="/sign-up" className="underline text-blue-400" asChild>
+      <Link href="/sign-in" className="underline text-blue-400" asChild>
         <Text>Already have an account?</Text>
       </Link>
     </>
