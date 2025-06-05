@@ -33,10 +33,7 @@ const DARK_THEME: Theme = {
   colors: NAV_THEME.dark,
 };
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from "expo-router";
+export { ErrorBoundary } from "expo-router";
 
 const usePlatformSpecificSetup = Platform.select({
   web: useSetWebBackgroundClassName,
@@ -74,7 +71,7 @@ export default function RootLayout() {
       boot={(store) => {
         if (store.query(tables.todos.count()) === 0) {
           store.commit(
-            events.todoCreated({ id: nanoid(), text: "Make coffee" }),
+            events.todoCreated({ id: nanoid(), text: "Make coffee" })
           );
         }
       }}
