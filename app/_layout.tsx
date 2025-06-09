@@ -1,6 +1,6 @@
+import "react-native-get-random-values";
 import "~/global.css";
 import { makePersistedAdapter } from "@livestore/adapter-expo";
-import { nanoid } from "@livestore/livestore";
 import { LiveStoreProvider } from "@livestore/react";
 import { makeCfSync } from "@livestore/sync-cf";
 import {
@@ -51,6 +51,7 @@ const adapter = makePersistedAdapter({
 export default function RootLayout() {
   usePlatformSpecificSetup();
   const { isDarkColorScheme } = useColorScheme();
+  const [, rerender] = React.useState({});
   const queryClient = new QueryClient();
   return (
     <LiveStoreProvider
@@ -64,16 +65,9 @@ export default function RootLayout() {
         return (
           <View>
             <Text>LiveStore Shutdown</Text>
-            {/* <Button title="Reload" onPress={() => rerender({})} /> */}
+            <Button onPress={() => rerender({})}>Reload</Button>
           </View>
         );
-      }}
-      boot={(store) => {
-        if (store.query(tables.todos.count()) === 0) {
-          store.commit(
-            events.todoCreated({ id: nanoid(), text: "Make coffee" })
-          );
-        }
       }}
       batchUpdates={batchUpdates}
     >
